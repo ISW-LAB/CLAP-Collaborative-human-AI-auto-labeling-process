@@ -12,7 +12,7 @@ Standard object detection models pre-trained on general large-scale datasets (So
 
 As illustrated below, directly transferring a model trained on diverse COCO images to specific driving scenarios presents challenges. Our system aims to adapt the model to the target domain iteratively with minimal human intervention.
 
-<img width="1612" height="1125" alt="Motivation (1)" src="https://github.com/user-attachments/assets/e2204bb2-e1c4-438d-a8f7-41d45a02219e" />
+<img width="1612" height="1125" alt="Motivation (1)" src="https://github.com/user-attachments/assets/7d7cf296-4ff6-42b0-b0f5-76babb09be46" />
 *Figure 1: Illustration of domain shift. The visual gap between the Source Domain (COCO) and Target Domain (BDD100k) leads to poor generalization in standard transfer learning.*
 
 ---
@@ -28,7 +28,7 @@ Unlike traditional pseudo-labeling that relies solely on confidence scores (whic
 3.  **Semantic Validation:** The generated captions are cross-referenced against user-defined **Target Keywords**. Only objects whose descriptions match the semantic intent are retained as pseudo-labels.
 4.  **Iterative Retraining:** The filtered pseudo-labels are used to retrain the detector, progressively improving its performance.
 
-<img width="3543" height="1840" alt="Overview_edit (1)" src="https://github.com/user-attachments/assets/ba940d23-9961-4970-9c22-e553e0d89ab7" />
+<img width="3543" height="1840" alt="Overview_edit (1)" src="https://github.com/user-attachments/assets/d295ddf8-e6b1-4518-a28f-d7b7e110e35f" />
 *Figure 2: The proposed CLAP framework. (a) The detector generates proposals on unlabeled data. (b) A VLM (ViT-GPT2) generates captions for each proposal. (c) A keyword matching mechanism filters out false positives (red) and retains true positives (green) for retraining.*
 
 ---
@@ -53,7 +53,7 @@ Unlike traditional pseudo-labeling that relies solely on confidence scores (whic
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/clap-autolabeling.git
+git clone https://github.com/ISW-LAB/CLAP-Collaborative-human-AI-auto-labeling-process.git
 cd clap-autolabeling
 
 # Install dependencies
@@ -184,7 +184,7 @@ The system automatically tracks metrics across cycles. As shown in the paper, CL
 
 The effectiveness of the semantic filtering approach is demonstrated visually across training cycles. Compared to baseline methods (Pseudo-Labeling) and supervised filters (DenseNet), our method significantly reduces false positives (red boxes) and progressively improves recall for true targets (green boxes).
 
-![Uploading detection_result_by_cycle_135.png…]()
+<img width="1591" height="2126" alt="detection_result_by_cycle_135" src="https://github.com/user-attachments/assets/3a58fb14-eeea-4594-8d42-f3fed1cea9e2" />
 *Figure 3: Qualitative comparison. (a) Pseudo-labeling accumulates errors over cycles. (c) CLAP maintains high precision by filtering non-target objects using VLM captions.*
 
 ---
@@ -219,9 +219,8 @@ While `vit-gpt2` is the default, the modular design supports other Hugging Face 
 **3. VLM Not Filtering Correctly**
 * **Solution:** Check your `target_keywords`. Ensure they cover synonyms (e.g., use `["cab", "taxi", "car"]` instead of just `["taxi"]`).
 
-```
-
+---
 
 ## 📧 Contact
 
-For questions about the paper or code implementation, please contact:gc.jo-isw@cbnu.ac.kr
+For questions about the paper or code implementation, please contact: gc.jo-isw@cbnu.ac.kr
